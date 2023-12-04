@@ -1,0 +1,14 @@
+[cloudshell-user@ip-10-136-59-12 ~]$ aws ec2 create-restore-image-task --object-key ami-0ec6fdfb365e5fc00.bin --bucket udacity-srend --name "udacity-harshit"
+{
+    "ImageId": "ami-0ac9b6f2017453009"
+}
+[cloudshell-user@ip-10-136-59-12 ~]$ aws ec2 copy-image --source-image-id ami-0ac9b6f2017453009 --source-region us-east-1 --region us-east-2 --name "udacity-harshit"
+{
+    "ImageId": "ami-03e208d81deb96864"
+}
+[cloudshell-user@ip-10-136-59-12 ~]$ 
+[cloudshell-user@ip-10-136-59-12 ~]$ aws ec2 copy-image --source-image-id ami-0ac9b6f2017453009 --source-region us-east-1 --region us-west-1 --name "udacity-harshit"
+{
+    "ImageId": "ami-08bcd9dc701fbed3a"
+}
+[cloudshell-user@ip-10-136-59-12 ~]$ 
