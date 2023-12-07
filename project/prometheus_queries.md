@@ -9,7 +9,7 @@ sum (rate(apiserver_request_total{job="apiserver"}[2d]))
 
 ## Latency SLI
 ### 90% of requests finish in these times
-histogram_quantile(0.90,sum(rate(apiserver_request_duration_seconds_bucket{job="apiserver"}[5m])) by (le, verb))
+histogram_quantile(0.90, sum(rate(apiserver_request_duration_seconds_bucket{job="apiserver"}[5m])) by (le, verb)) <= 0.100
 
 
 ## Throughput
@@ -19,5 +19,5 @@ sum(rate(http_request_total{code=~"2.."}[5m]))
 
 ## Error Budget - Remaining Error Budget
 ### The error budget is 20%
-1 - ((1 - (sum(increase(apiserver_request_total{job="apiserver", code="200"}[7d])) by (verb)) / sum(increase(apiserver_request_total{job="apiserver"}[7d])) by (verb)) / (1 - 0.20))
+1 - ((1 - (sum(increase(apiserver_request_total{job="apiserver", code="200"}[7d])) by (verb)) / sum(increase(apiserver_request_total{job="apiserver"}[7d])) by (verb)) / (1 - 0.80))
 
