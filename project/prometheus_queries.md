@@ -9,7 +9,7 @@ sum (rate(apiserver_request_total{job="apiserver"}[2d]))
 
 ## Latency SLI
 ### 90% of requests finish in these times
-histogram_quantile(0.90, sum(rate(apiserver_request_duration_seconds_bucket{job="apiserver"}[5m])) by (le, verb)) <= 0.100
+histogram_quantile(0.90, sum by(le)(rate(prometheus_http_request_duration_seconds_bucket[5m])))
 
 
 ## Throughput
